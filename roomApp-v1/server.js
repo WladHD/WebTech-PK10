@@ -2,9 +2,9 @@ const fs = require("fs");
 const http = require("http");
 
 const server = http.createServer(function (request, response) {
-    let fileUrl = "./public" + request.url;
+    let fileUrl = "./public" + (request.url === "/" ? "/dashboard.html" : request.url);
 
-    if (request.url === "/" || request.url === "/index.html") {
+    if (request.url === "/index.html") {
         response.writeHead(200);
         response.end(getIndexHTML());
         console.log("Template-Seite ausgegeben")
